@@ -1,6 +1,3 @@
-/**
- * Custom JavaScript for Madimakatso's Tech Portfolio
- */
 
 document.addEventListener('DOMContentLoaded', () => {
     

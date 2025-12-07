@@ -33,7 +33,6 @@ section {
     padding: 0 15px; 
 }
 
-/* FIX 2: Maximize padding for the About section to absolutely fix the overlap */
 #about {
     padding-top: 180px; /* Large padding to push content safely below fixed navbar */
     padding-bottom: 100px;
