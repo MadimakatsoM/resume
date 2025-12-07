@@ -1,346 +1,337 @@
-/*
-|--------------------------------------------------------------------------
-| BASE STYLES & THEME (Soft Life / Multi-Accent)
-|--------------------------------------------------------------------------
-*/
-body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background: #fcfcfc; /* Very light, clean background */
-    color: #343a40; 
-    min-height: 100vh;
-}
-
-/* MAIN THEME VARIABLES */
+/* --- GLOBAL STYLES --- */
 :root {
-    --main-purple: #673ab7; /* Deep Purple Accent (Primary) */
-    --accent-soft: #e9d5ff; /* Light Lavender/Pink (Secondary/Background Shapes) */
-    --light-bg: #ffffff;
-    --card-bg: #ffffff;
-    --text-dark: #343a40;
-    --text-muted: #6c757d;
-    --border-subtle: #e9ecef;
-    --shadow-soft: 0 8px 25px rgba(0, 0, 0, 0.08); /* Softer, wider shadow */
-    --transition-fast: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Theme: Neon Purple / Blue Violet */
+    --primary-neon: #8A2BE2; 
+    --primary-neon-light: #C3B1E1; 
+    --dark-bg: #1E1E1E; /* Near-black */
+    --dark-secondary: #28282B; /* Slightly lighter dark */
+    --text-color: #E0E0E0; 
+    --success-color: #00FF00; /* Neon Green */
+    --danger-color: #FF4500; /* Neon Red/Orange */
 }
 
-/* Customizing Bootstrap Container for wider content area */
-.custom-container {
-    max-width: 1400px;
+/* FIX 1: Ensure scroll links account for the fixed navbar height */
+html {
+    scroll-padding-top: 80px; 
 }
 
-/* General Link Styling */
-a {
-    color: var(--main-purple);
-    text-decoration: none;
-    transition: var(--transition-fast);
-}
-a:hover {
-    color: #4527a0;
+body {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
 }
 
-/* Section Divider Styling */
-.section-divider {
-    border: 0;
-    height: 1px;
-    background-color: var(--border-subtle);
-    margin: 80px 0;
+/* --- SECTION SPACING & CONSISTENCY FIXES --- */
+section {
+    padding: 100px 0; /* Standard vertical padding for all sections */
+}
+.bg-dark-secondary {
+    background-color: var(--dark-secondary);
+}
+.container {
+    padding: 0 15px; 
 }
 
-
-/*
-|--------------------------------------------------------------------------
-| NAVBAR STYLING
-|--------------------------------------------------------------------------
-*/
-.navbar {
-    background: var(--light-bg) !important;
-    padding: 15px 0;
-    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+/* FIX 2: Maximize padding for the About section to absolutely fix the overlap */
+#about {
+    padding-top: 180px; /* Large padding to push content safely below fixed navbar */
+    padding-bottom: 100px;
 }
 
-.navbar-brand {
-    color: var(--main-purple) !important;
+/* --- HEADINGS & DIVIDER FIXES --- */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-neon);
+    font-family: 'Space Mono', monospace; 
     font-weight: 700;
+    margin: 0 0 15px 0;
+}
+p {
+    line-height: 1.7;
+}
+.section-heading {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+.divider {
+    border-color: var(--primary-neon);
+    opacity: 0.5;
+    margin: 0 auto 60px auto; /* Centered with generous bottom margin */
+    width: 80px; 
+}
+
+/* --- NAVIGATION STYLING --- */
+.navbar {
+    background-color: var(--dark-bg) !important;
+    border-bottom: 1px solid var(--primary-neon);
+    min-height: 70px; /* Set a consistent height */
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+.navbar-brand {
+    color: var(--primary-neon) !important;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+.nav-link {
+    color: var(--text-color) !important;
+    font-family: "Space Mono", monospace;
+    transition: color 0.3s, background-color 0.3s;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+.nav-link:hover, .nav-item .active {
+    color: var(--primary-neon) !important;
+    background-color: rgba(138, 43, 226, 0.1);
+}
+
+/* --- HERO SECTION (LANDING PAGE) --- */
+.hero-section {
+    /* FIX 3: Push the hero content down by the height of the navbar */
+    height: calc(100vh - 70px); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 70px; /* Pushes the entire section down */
+    padding-top: 0; 
+    background: radial-gradient(circle at center, rgba(30, 30, 30, 0.95), rgba(0, 0, 0, 1));
+}
+.hero-title {
+    color: var(--primary-neon);
+    font-size: 4rem;
+    text-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+.hero-subtitle {
+    color: var(--text-color);
+    font-family: 'Space Mono', monospace;
+    margin-bottom: 40px; 
+}
+.primary-btn {
+    background-color: var(--primary-neon);
+    border: 2px solid var(--primary-neon);
+    color: white;
+    font-weight: 600;
+    padding: 12px 40px;
+    transition: background-color 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+.primary-btn:hover {
+    background-color: transparent;
+    border-color: var(--success-color);
+    color: var(--success-color);
+    box-shadow: 0 0 15px var(--success-color);
+    transform: translateY(-2px);
+}
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(138, 43, 226, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(138, 43, 226, 0); }
+}
+
+/* --- ABOUT ME & IMAGE FIXES --- */
+.profile-img {
+    border: 5px solid var(--primary-neon) !important; 
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+    /* FIX 4: Margin to align image visually with the text better */
+    margin-top: 15px; 
+}
+#about .row {
+    align-items: flex-start;
+}
+#about .col-md-8 {
+    padding-right: 30px; 
+}
+
+/* --- RESUME/TIMELINE IMPROVEMENTS --- */
+.timeline {
+    padding-left: 25px;
+    margin-right: 20px;
+}
+.timeline-item {
+    padding-bottom: 40px;
+    margin-bottom: 0;
+    position: relative;
+}
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 3px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary-neon);
+    border-radius: 50%;
+    border: 4px solid var(--dark-bg);
+}
+#resume .subsection-heading {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--primary-neon-light);
+    padding-bottom: 10px;
     font-size: 1.6rem;
 }
 
-.nav-link {
-    color: var(--text-dark) !important; 
-    margin-left: 15px;
-    font-weight: 500;
-    padding: 8px 12px;
-    border-radius: 8px;
-    transition: var(--transition-fast);
+/* --- SKILLS & PROGRESS BAR IMPROVEMENTS --- */
+#skills .container {
+    max-width: 950px; 
 }
-
-.nav-link:hover,
-.nav-link.active {
-    color: var(--main-purple) !important;
-    background-color: rgba(103, 58, 183, 0.05);
+.skill-label {
     font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 8px; 
 }
-
-
-/*
-|--------------------------------------------------------------------------
-| HERO SECTION (2-Column Layout with Soft Shapes)
-|--------------------------------------------------------------------------
-*/
-.hero-section {
-    background: #fdfdfd;
-    padding: 80px 0 100px; /* Adjusted padding for two-column flow */
-    position: relative;
-    overflow: hidden; 
+.progress {
+    height: 30px;
+    background-color: var(--dark-bg);
+    border: 1px solid var(--primary-neon);
+    margin-bottom: 30px; 
 }
-
-/* Background Shapes (Adding life) */
-.hero-section::before,
-.hero-section::after {
-    content: '';
-    position: absolute;
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.3;
-    z-index: 0;
-}
-.hero-section::before {
-    background-color: #f7a4b8; /* Soft pink accent */
-    top: -50px;
-    right: 50px;
-    transform: scale(0.6);
-}
-.hero-section::after {
-    background-color: var(--accent-soft); 
-    bottom: 50px;
-    left: -100px;
-}
-
-.hero-section .container {
-    position: relative;
-    z-index: 10;
-}
-
-.hero-section h1 {
-    font-size: clamp(2.5rem, 6vw, 3.5rem);
-    color: var(--text-dark); 
-    margin-bottom: 5px;
-    font-weight: 800;
-}
-
-.lead.text-primary-accent {
-    color: var(--main-purple); 
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-.intro-text {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-}
-
-/* Profile Picture Styling (Circular with subtle border and shadow) */
-.profile-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 5px solid var(--border-subtle) !important; 
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    object-fit: cover;
-}
-
-/* Hire Button Styling */
-.hire-btn {
-    color: #ffffff !important; 
-    background: var(--main-purple) !important;
-    border: none !important;
-    border-radius: 8px;
-    padding: 12px 28px;
-    font-weight: 600;
-    transition: var(--transition-fast);
-}
-.hire-btn:hover {
-    background: #4527a0 !important; 
-    box-shadow: 0 8px 15px rgba(103, 58, 183, 0.4) !important;
-    transform: translateY(-3px);
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| SIDEBAR / CONTACT CARD
-|--------------------------------------------------------------------------
-*/
-.sidebar-card {
-    background: var(--card-bg) !important;
-    padding: 30px !important; 
-    margin: 20px 0;
-    border-radius: 12px;
-    box-shadow: var(--shadow-soft);
-    transition: none;
-}
-
-.section-title-sidebar {
-    color: var(--main-purple);
-    font-size: 20px;
-    margin-bottom: 15px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid var(--border-subtle);
-}
-
-.contact-item {
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-
-/* Skill bars */
-.skill-item { 
-    display: flex; 
-    justify-content: space-between; 
-    margin-bottom: 5px; 
-    font-weight: 500;
-    color: var(--text-dark);
-}
-.skill-bar { 
-    height: 8px;
-    background-color: var(--border-subtle); 
-    border-radius: 4px; 
-    margin-bottom: 15px;
-}
-.skill-progress { 
-    background-color: var(--main-purple); 
-    height: 100%; 
-    border-radius: 4px; 
-    transition: width 1.5s ease-out; /* JavaScript handles transition timing */
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| CONTENT SECTIONS & CARDS (Floating Effect & Spacing)
-|--------------------------------------------------------------------------
-*/
-.main-content-padding {
-    padding-top: 50px;
-    padding-bottom: 50px;
-}
-
-h2.section-title {
-    color: var(--text-dark);
-    font-size: 32px;
-    margin-bottom: 45px;
+.progress-bar {
     font-weight: 700;
-    text-align: center;
+    transition: width 1s ease-out; 
 }
+.bg-html { background-color: #E44D26; color: white; }
+.bg-java { background-color: #5382A1; color: white; }
+.bg-python { background-color: #306998; color: white; }
+.bg-blockchain { background-color: var(--primary-neon); color: white; }
 
-h4 {
-    font-weight: 700;
-    color: var(--text-dark);
+/* --- SERVICES SECTION --- */
+#services {
+    background-color: var(--primary-neon-light);
+    color: var(--dark-bg);
 }
-
-/* Card Styling (Floating Effect) */
-.service-card,
-.experience-card {
-    background: var(--card-bg) !important;
-    padding: 30px !important; 
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); 
-    transition: var(--transition-fast);
+#services h2, #services h5, #services p {
+    color: var(--dark-bg);
 }
-
-.service-card:hover,
-.experience-card:hover {
-    box-shadow: 0 8px 25px rgba(103, 58, 183, 0.1); 
-    transform: translateY(-5px); 
-    border-top: 3px solid var(--main-purple); 
-}
-
-/* Service Card Specifics */
-.service-card h5 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--main-purple);
-    margin-bottom: 10px;
-}
-.service-card p {
-    color: var(--text-muted);
-}
-
-/* Experience Card Specifics */
-.experience-card h4 {
-    color: var(--main-purple);
-    margin-bottom: 25px;
-}
-.experience-item {
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--border-subtle);
-}
-.experience-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-.experience-item h5 {
-    margin-bottom: 0;
-    font-weight: 600;
-    color: var(--text-dark);
-}
-.experience-item p.text-muted {
-    font-size: 0.9rem;
-    margin-bottom: 5px;
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| CALL TO ACTION
-|--------------------------------------------------------------------------
-*/
-.call-to-action-block {
-    background-color: var(--accent-soft); 
-    border-radius: 15px;
-    margin-bottom: 60px !important;
-    padding: 60px 30px !important;
-    text-align: center;
-}
-.section-title-cta {
-    color: var(--main-purple);
-    font-size: 2.2rem;
-    font-weight: 800;
-}
-.lead-cta {
-    color: var(--text-dark);
-    font-size: 1.1rem;
-}
-.btn-secondary {
-    color: #ffffff !important;
-    background: #4527a0 !important;
-    border: 1px solid #4527a0 !important;
-    border-radius: 8px;
-    padding: 14px 32px;
-    font-weight: 600;
-    transition: var(--transition-fast);
-}
-.btn-secondary:hover {
-    background: #381f8f !important;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2) !important;
-    transform: translateY(-3px);
-}
-
-
-/*
-|--------------------------------------------------------------------------
-| FOOTER
-|--------------------------------------------------------------------------
-*/
-footer {
-    background: #f8f9fa; 
-    text-align: center;
+.service-card {
+    background: white;
     padding: 30px;
-    border-top: 1px solid var(--border-subtle);
-    color: var(--text-muted); 
-    font-size: 0.9rem;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    height: 100%;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid var(--primary-neon-light);
+}
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+}
+.service-icon {
+    font-size: 2.2rem;
+    color: var(--primary-neon);
+    margin-bottom: 15px;
+}
+
+/* --- PORTFOLIO --- */
+.work-banner {
+    background-color: var(--primary-neon);
+    color: white;
+    padding: 30px 0;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    margin-bottom: 60px;
+}
+.work-banner h2 { color: white; margin-bottom: 0; }
+.work-banner p { color: white; opacity: 0.9; font-size: 1.1rem; }
+
+.project-card {
+    background-color: var(--dark-secondary);
+    border: 1px solid var(--primary-neon-light);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.project-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 25px var(--primary-neon);
+}
+.project-link {
+    color: var(--success-color);
+}
+.card-text {
+    color: var(--text-color);
+}
+
+/* --- HIRE ME (CALL TO ACTION) --- */
+.hire-banner {
+    background-color: var(--dark-secondary);
+    border-top: 3px solid var(--primary-neon);
+    border-bottom: 3px solid var(--primary-neon);
+    padding: 70px 0;
+}
+.hire-banner h2 { color: var(--primary-neon); }
+.hire-banner p { color: var(--text-color); }
+
+.btn-hire {
+    display: inline-block;
+    padding: 15px 40px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: white;
+    color: var(--primary-neon);
+    border: 2px solid var(--primary-neon);
+    transition: background-color 2s ease, color 2s ease, border-color 2s ease, box-shadow 0.5s; 
+}
+.btn-hire:hover {
+    background-color: var(--success-color);
+    color: var(--dark-bg);
+    border-color: var(--success-color);
+    box-shadow: 0 0 20px var(--success-color);
+}
+
+/* --- CONTACT SECTION IMPROVEMENTS --- */
+.contact-form {
+    padding: 40px;
+    background-color: var(--dark-secondary);
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--primary-neon);
+}
+.contact-input {
+    background-color: var(--dark-bg) !important;
+    border: 1px solid var(--primary-neon-light) !important;
+    color: var(--text-color) !important;
+    padding: 15px 10px;
+}
+.contact-input::placeholder {
+    color: var(--primary-neon-light) !important;
+    opacity: 0.7;
+}
+
+.contact-btn {
+    background-color: var(--danger-color); 
+    color: white;
+    padding: 12px 25px;
+    border: 2px solid var(--danger-color);
+    font-weight: bold;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 20px;
+    transition: background-color 2s, border-color 2s; 
+}
+.contact-btn:hover {
+    background-color: var(--success-color);
+    border-color: var(--success-color); 
+    color: var(--dark-bg);
+    box-shadow: 0 0 10px var(--success-color);
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+    border-top: 2px solid var(--primary-neon);
+}
+footer a {
+    color: var(--primary-neon);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+footer a:hover {
+    color: var(--success-color);
 }
